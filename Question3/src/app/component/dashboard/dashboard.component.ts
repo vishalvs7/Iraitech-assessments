@@ -9,49 +9,49 @@ import { CrudService } from 'src/app/service/crud.service';
 })
 export class DashboardComponent implements OnInit {
 
-  taskObj : Task = new Task();
-  taskArr : Task[] = [];
+  taskObj : number = new number();
+  numberArr : number[] = [];
 
-  addTaskValue : string = '';
-  editTaskValue : string = '';
+  addnumberValue : string = '';
+  editnumberValue : string = '';
 
   constructor(private crudService : CrudService) { }
 
   ngOnInit(): void {
-    this.editTaskValue = '';
-    this.addTaskValue = '';
-    this.taskObj = new Task();
-    this.taskArr = [];
-    this.getAllTask();
+    this.editnumberValue = '';
+    this.addnumberValue = '';
+    this.numberObj = new number();
+    this.numberArr = [];
+    this.getAllnumber();
   }
-  getAllTask() {
-    this.crudService.getAllTask().subscribe(res => {
-      this.taskArr = res;
+  getAllnumber() {
+    this.crudService.getAllnumber().subscribe(res => {
+      this.numberArr = res;
     }, err => {
-      alert("Unable to get list of tasks");
+      alert("Unable to get list of numbers");
     });
   }
 
-  addTask() {
-    this.taskObj.task_name = this.addTaskValue;
-    this.crudService.addTask(this.taskObj).subscribe(res => {
+  addnumber() {
+    this.numberObj.number_name = this.addnumberValue;
+    this.crudService.addnumber(this.numberObj).subscribe(res => {
       this.ngOnInit();
-      this.addTaskValue = '';
+      this.addnumberValue = '';
     }, err => {
       alert(err);
     })
   }
 
-  editTask() {
-    this.taskObj.task_name = this.editTaskValue;
-    this.crudService.editTask(this.taskObj).subscribe(res => {
+  editnumber() {
+    this.numberObj.number_name = this.editnumberValue;
+    this.crudService.editnumber(this.numberObj).subscribe(res => {
       this.ngOnInit();
     }, err=> {
-      alert("Failed to update task");
+      alert("Failed to update number");
     })
   }
 
-  deleteTask(etask : Task) {
+  deletenumber(etask : Task) {
     this.crudService.deleteTask(etask).subscribe(res => {
       this.ngOnInit();
     }, err=> {
